@@ -60,6 +60,7 @@
             this.enableFilling.TabIndex = 2;
             this.enableFilling.Text = "Заливка";
             this.enableFilling.UseVisualStyleBackColor = true;
+            this.enableFilling.CheckedChanged += new System.EventHandler(this.enableFilling_CheckedChanged);
             // 
             // currentColorPicture
             // 
@@ -91,6 +92,9 @@
             this.workArea.Size = new System.Drawing.Size(582, 355);
             this.workArea.TabIndex = 5;
             this.workArea.TabStop = false;
+            this.workArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workArea_MouseDown);
+            this.workArea.MouseMove += new System.Windows.Forms.MouseEventHandler(this.workArea_MouseMove);
+            this.workArea.MouseUp += new System.Windows.Forms.MouseEventHandler(this.workArea_MouseUp);
             // 
             // Task1a
             // 
