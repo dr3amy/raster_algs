@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace raster_algs.Task1b
+namespace raster_algs.Task2
 {
-    public partial class Task1b : Form
+    public partial class Form1 : Form
     {
-        public Task1b()
+        public Form1()
         {
             InitializeComponent();
         }

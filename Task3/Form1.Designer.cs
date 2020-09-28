@@ -1,6 +1,6 @@
-﻿namespace raster_algs.Task1b
+﻿namespace raster_algs.Task3
 {
-    partial class Task1b
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.

@@ -66,6 +66,21 @@
     <Compile Include="Task1b\Task1b.Designer.cs">
       <DependentUpon>Task1b.cs</DependentUpon>
     </Compile>
+    <Compile Include="Task2\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Task2\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task3\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Task3\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -88,9 +103,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Task2\" />
-    <Folder Include="Task3\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
