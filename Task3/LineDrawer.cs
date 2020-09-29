@@ -7,6 +7,7 @@ namespace raster_algs
     {
         private readonly int _width;
         private readonly int _height;
+        private Bitmap _bitmap;
 
         public LineDrawer(int width, int height)
         {
@@ -16,33 +17,38 @@ namespace raster_algs
 
         public Bitmap DrawLineBresenham(int x0, int y0, int x1, int y1)
         {
-            Bitmap bitmap = new Bitmap(_width, _height);
+            var bitmap = new Bitmap(_width, _height);
             
-            var steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0); // Проверяем рост отрезка по оси икс и по оси игрек
-            // Отражаем линию по диагонали, если угол наклона слишком большой
+            var steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
             if (steep)
             {
-                Swap(ref x0, ref y0); // Перетасовка координат вынесена в отдельную функцию для красоты
+                Swap(ref x0, ref y0);
                 Swap(ref x1, ref y1);
             }
-            // Если линия растёт не слева направо, то меняем начало и конец отрезка местами
             if (x0 > x1)
             {
                 Swap(ref x0, ref x1);
                 Swap(ref y0, ref y1);
             }
-            int dx = x1 - x0;
-            int dy = Math.Abs(y1 - y0);
-            int error = dx / 2; // Здесь используется оптимизация с умножением на dx, чтобы избавиться от лишних дробей
-            int ystep = (y0 < y1) ? 1 : -1; // Выбираем направление роста координаты y
-            int y = y0;
-            for (int x = x0; x <= x1; x++)
+            var dx = x1 - x0;
+            var dy = Math.Abs(y1 - y0);
+            var error = dx / 2;
+            var yStep = (y0 < y1) ? 1 : -1;
+            var y = y0;
+            for (var x = x0; x <= x1; x++)
             {
-                DrawPoint(bitmap, steep ? y : x, steep ? x : y); // Не забываем вернуть координаты на место
+                if (steep)
+                {
+                    bitmap.SetPixel(y, x, Color.Black);
+                }
+                else
+                {
+                    bitmap.SetPixel(x, y, Color.Black);
+                }
                 error -= dy;
                 if (error < 0)
                 {
-                    y += ystep;
+                    y += yStep;
                     error += dx;
                 }
             }
@@ -57,14 +63,49 @@ namespace raster_algs
             b = temp;
         }
 
-        private void DrawPoint(Bitmap bitmap, int x, int y)
+        public Bitmap DrawLineWu(int x0, int y0, int x1, int y1)
         {
-            bitmap.SetPixel(x, y, Color.Black);
+            _bitmap = new Bitmap(_width, _height);
+            
+            var steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
+            if (steep)
+            {
+                Swap(ref x0, ref y0);
+                Swap(ref x1, ref y1);
+            }
+            if (x0 > x1)
+            {
+                Swap(ref x0, ref x1);
+                Swap(ref y0, ref y1);
+            }
+
+            DrawPoint(steep, x0, y0, 1);
+            DrawPoint(steep, x1, y1, 1);
+            float dx = x1 - x0;
+            float dy = y1 - y0;
+            var gradient = dy / dx;
+            var y = y0 + gradient;
+            for (var x = x0 + 1; x <= x1 - 1; x++)
+            {
+                DrawPoint(steep, x, (int)y, 1 - (y - (int)y));
+                DrawPoint(steep, x, (int)y + 1, y - (int)y);
+                y += gradient;
+            }
+            
+            return _bitmap;
         }
 
-        public void DrawLineBy()
+        private void DrawPoint(bool steep, int x, int y, float a)
         {
-            
+            var color = Color.FromArgb((int)(a * 255), Color.Black);
+            if (steep)
+            {
+                _bitmap.SetPixel(y, x, color);
+            }
+            else
+            {
+                _bitmap.SetPixel(x, y, color);
+            }
         }
     }
 }

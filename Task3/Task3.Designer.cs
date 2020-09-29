@@ -50,7 +50,8 @@
             // algorithmList
             // 
             this.algorithmList.FormattingEnabled = true;
-            this.algorithmList.Items.AddRange(new object[] {"Брезенхейм", "Ву"});
+            this.algorithmList.Items.AddRange(new object[] {Bresenham, Wu});
+            this.algorithmList.SelectedText = Bresenham;
             this.algorithmList.Location = new System.Drawing.Point(56, 9);
             this.algorithmList.Name = "algorithmList";
             this.algorithmList.Size = new System.Drawing.Size(131, 21);
