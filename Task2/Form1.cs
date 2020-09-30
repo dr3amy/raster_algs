@@ -152,14 +152,14 @@ namespace raster_algs.Task2
             Point start = curr;
             pixels.Add(start);
             Color borderColor = bmp.GetPixel(curr.X, curr.Y);
-
+            
             Point next = new Point();
-            int currDir = 6;
+            int currDir = 0;
             int nextDir = -1;
             int moveTo = 0;
             do
             {
-                moveTo = (currDir - 2 + 8) % 8;
+                moveTo = (currDir - 2 + 8) % 8; // на 90 град по часовой
                 int mt = moveTo;
                 do
                 {
@@ -192,27 +192,6 @@ namespace raster_algs.Task2
 
             foreach (var p in pixels)
                 bmp.SetPixel(p.X, p.Y, c);
-
-            pixels.Sort(compareY);
-            HashSet<Point> pixset = new HashSet<Point>();
-
-            foreach (var p in pixels)
-            {
-                pixset.Add(p);
-            }
-
-
-            Console.WriteLine(pixset.Count);
-            Console.WriteLine(pixels.Count);
-        }
-
-        private int compareY(Point p1, Point p2)
-        {
-            if (p1.Y < p2.Y)
-                return 1;
-            else if (p1.Y == p2.Y)
-                return 0;
-            return -1;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
