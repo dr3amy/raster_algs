@@ -93,13 +93,10 @@
     <EmbeddedResource Include="Task1a\Task1a.resx">
       <DependentUpon>Task1a.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Task1b\Task1b.resx">
       <DependentUpon>Task1b.cs</DependentUpon>
     </EmbeddedResource>
-=======
     <EmbeddedResource Include="Task3\Task3.resx" />
->>>>>>> c23e032e95ba55833016868087bd25aaefb25bdd
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
