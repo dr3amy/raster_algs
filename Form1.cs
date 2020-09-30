@@ -33,7 +33,7 @@ namespace raster_algs
         }
         private void Task3_Click(object sender, EventArgs e)
         {
-            (new Task3.Form1()).Show();
+            (new Task3()).Show();
         }
     }
 }
